@@ -1,0 +1,26 @@
+title: Johtizen
+#email: your-email@example.com
+description: > # this means to ignore newlines until "baseurl:"
+  software engineering craftmanship blog for java developers
+  <br><a href="/johtizen/index.html">Home</a> / <a href="/johtizen/about">About</a>
+baseurl: "/johtizen" # the subpath of your site, e.g. /blog
+url: "https://joht.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+github_username: joht
+
+# Build settings
+github: [metadata]
+markdown: kramdown
+theme: jekyll-theme-hacker
+plugins:
+  - jekyll-feed
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/

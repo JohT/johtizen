@@ -1,0 +1,28 @@
+---
+---
+
+@import "{{ site.theme }}";
+header {  border-bottom-color:  #63c0f5; }
+header h1 { color: #63c0f5; text-align: center; }
+header h1:before { content: "\270E "; font-size: 24px; }
+header h2 {text-align: center;}
+
+h1, h2, h3, h4, h5, h6 { color: #63c0f5 }
+hr {  border-bottom: 1px dashed #63c0f5; color: #63c0f5; }
+
+img {vertical-align: middle;}
+
+.btn-github {
+    display: none !important;
+}
+
+.label { 
+    padding: 1px 4px; 
+    border-radius: 2px; 
+    color:  #63c0f5;
+}
+.label:before {
+    content:  "\1F516  "; //bookmark = 1F516, label = 1F3F7
+}
+
+/* #86b8ea */
