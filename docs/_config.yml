@@ -6,6 +6,9 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: "/johtizen" # the subpath of your site, e.g. /blog
 url: "https://joht.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: joht
+author: JohT
+logo: /assets/JohT.png
+google_site_verification: SqYvi87sN1X4tlQ_W88suhxxC5L2YwWwSHfVHqoPae4
 
 # Build settings
 github: [metadata]
@@ -13,6 +16,7 @@ markdown: kramdown
 theme: jekyll-theme-hacker
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
