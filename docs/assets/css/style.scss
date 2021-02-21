@@ -2,15 +2,36 @@
 ---
 
 @import "{{ site.theme }}";
+
 header {  border-bottom-color:  #63c0f5; }
-header h1 { color: #63c0f5; text-align: center; }
-header h1:before { content: "\270E "; font-size: 24px; }
-header h2 {text-align: center;}
+header h1 { color: #63c0f5; text-align: center; font-size: 38px}
+header h1:before { content: "\270E "; font-size: 38px; }
+header h2 {text-align: center}
 
 h1, h2, h3, h4, h5, h6 { color: #63c0f5 }
 hr {  border-bottom: 1px dashed #63c0f5; color: #63c0f5; }
 
 img {vertical-align: middle;}
+
+#main_content h1 {
+    font-size: 34px;
+}
+
+#main_content h2 {
+    font-size: 30px;
+}
+
+#main_content h3 {
+    font-size: 24px;
+}
+
+#main_content h4 {
+    font-size: 20px;
+}
+
+#main_content ul li, #main_content p {
+    font-size: 20px;
+}
 
 .btn-github {
     display: none !important;
@@ -21,8 +42,11 @@ img {vertical-align: middle;}
     border-radius: 2px; 
     color:  #63c0f5;
 }
+
 .label:before {
     content:  "\1F516  "; //bookmark = 1F516, label = 1F3F7
 }
+
+
 
 /* #86b8ea */
