@@ -84,7 +84,7 @@ If you have one entry point, like `index.html` or `index.js`, exchange `./src/js
 or different variations (e.g. with/without IE compatibility).
 
 If you accounter "command not found" problems while building in the pipeline, 
-check if the first command in the chain is `npm install`.  If it is still an issue, try to prefix the commands with `$(npm bin)/`, e.g. `$(npm bin)/parcel...`.
+check if the first command in the chain is `npm ci`.  If it is still an issue, try to prefix the commands with `$(npm bin)/`, e.g. `$(npm bin)/parcel...`.
 
 <br/>
 
@@ -327,7 +327,7 @@ jobs:
       with:
         node-version: '12'
     - name: Install nodes packages
-      run: npm install
+      run: npm ci
     - name: Run linter
       run: npm run lint
     - name: Run tests
@@ -341,7 +341,7 @@ jobs:
 ```
 
 This action will run the previously introduced chain of commands in separate, traceable named steps.
-`npm install` needs to be the first command. It loads all dependencies that are described inside `package.json`.
+`npm ci` needs to be the first command. It loads all dependencies that are described inside `package.json`.
 Without it you may encounter "command not found" error messages.
 
 `coverage-badge` is missing by intention, since it updates `README.md`. This is not practical, since
@@ -384,6 +384,7 @@ This [living example][living example] can also be taken as reference.
 
 ### Script Commands
 - `npm install` installs all dependencies and creates the folder `/node_modules`, that is needed for all following commands
+- `npm ci` is the same as `npm install` but [preferable][npm ci vs install] in pipeline build 
 - `npm run package` runs all steps incl. test, coverage, doc generation and build
 - `npm run coverage` runs all unit tests **with** coverage report
 - `npm test` runs all unit tests **without** coverage report
@@ -414,7 +415,7 @@ This [living example][living example] can also be taken as reference.
 
 ### Files and Directories
 - `./package.json` main configuration for npm and build scripts
-- `./package-lock.json` npm managed file, can be ignored, should be included in the repository
+- `./package-lock.json` npm managed file, shouldn't be ignored, used by `npm ci`
 - `./.gitignore` GIT configuration for file(pattern)s to ignore
 - `./nycrc` nyc test code coverage configuration and limits
 - `./eslintrc.json` ESLint static code analysis configuration
@@ -424,8 +425,7 @@ This [living example][living example] can also be taken as reference.
 - `/devdist` parcel development build output if configured like described above
 - `/dist` default parcel production build output
 - `/docs` JSDoc documentation generation output if configured like described above
-- `/node-modules` directory for all npm dependencies, created by `npm install`
-
+- `/node-modules` directory for all npm dependencies, created by `npm install` or `npm ci`
 
 
 <br>
@@ -433,12 +433,18 @@ This [living example][living example] can also be taken as reference.
 ----
 <br>
 
+## Updates
+
+- 2021-03-13: Prefer [npm ci over npm install][npm ci vs install] in pipeline
+
+
 ## References
 
 - [Living example of a JavaScript repository with Continuous Integration][living example]
 - [About npm][about npm]
 - [How to install npm][install npm]
 - [The best time to npm init][npm init best practice]
+- [npm ci vs. npm install][npm ci vs install]
 - [How to get the path of the npm binaries ][npm bin]
 - [How to publish packages to npm][publish to npm]
 - [About Parcel][about parcel]
@@ -465,6 +471,7 @@ This [living example][living example] can also be taken as reference.
 [npm init best practice]: https://zellwk.com/blog/best-time-to-npm-init/
 [npm bin]: https://docs.npmjs.com/cli/v6/commands/npm-bin
 [npm scripts]: https://krishankantsinghal.medium.com/scripting-inside-package-json-4b06bea74c0e
+[npm ci vs install]: https://betterprogramming.pub/npm-ci-vs-npm-install-which-should-you-use-in-your-node-js-projects-51e07cb71e26
 [publish to npm]: https://zellwk.com/blog/publish-to-npm
 
 [about parcel]: https://parceljs.org
