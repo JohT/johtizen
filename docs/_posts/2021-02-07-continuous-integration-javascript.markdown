@@ -28,6 +28,7 @@ This [living example][living example] was the original trigger and can be taken 
 [npm][about npm] manages dependencies and provides a registry to publish packaged code. 
 After [installing npm][install npm], use `cd` to change into the directory of your repository 
 and use the following command to create the `package.json` file:
+
 ```
 npm init
 ```
@@ -38,11 +39,13 @@ Initializing npm within an already existing GIT repository [automatically fills 
 ### 2. Bundle with Parcel
 [Parcel][about parcel] is an easy to use bundler, that copies multiple files into one, minifies them, transforms them,...
 As described [here][parcel getting started], parcel is added using the following command:
+
 ```
 npm install parcel-bundler --save-dev
 ```
 This adds parcel-bundler as development dependency inside your `package.json` file.
 If it hadn't already been there, the directory `nodes_modules` will show up, which should be added to the `.gitignore` file:
+
 ```
 # Dependency directories
 node_modules/
@@ -51,6 +54,7 @@ node_modules/
 ```
 
 To run parcel for development and production, these two script commands need to be added in the `package.json` file: 
+
 ```json
 {
   "scripts": {
@@ -60,6 +64,7 @@ To run parcel for development and production, these two script commands need to 
 }
 ```
 You can execute them by their name:
+
 ```
 npm run dev
 npm run build
@@ -71,6 +76,7 @@ all development build files get written into their own folder (here `devdist`) t
 
 To assure that the `dist` folder gets cleaned up right before the build,  
 add the following script [as described here][prebuild]. `prebuild` will automatically run when `build` is started.
+
 ```json
 {
   "scripts": {
@@ -94,12 +100,14 @@ check if the first command in the chain is `npm ci`.  If it is still an issue, t
 that strongly encourages [Behavior Driven Development (BDD)][Behavior Driven Development].
 These two commands [add Jasmine][Jasmine getting started] as a development dependency
 and initialize it by creating the file `spec/support/jasmine.json`:
+
 ```
 npm install jasmine --save-dev
 npx jasmine init
 ```
 
 The script command inside `package.json` might look like this:
+
 ```json
 {
   "scripts": {
@@ -113,6 +121,7 @@ you can move `jasmine.json` there and refer to it by specifying `--config=./test
 in the command, as in the example above.
 
 You can run the tests with:
+
 ```
 npm test
 ```
@@ -141,11 +150,13 @@ philosophy in favour of a more commonly known and used structure:
 
 ### 4. Unit Test coverage measurement with nyc
 [nyc][nyc test coverage] measures test code coverage and [extends the functionality of the formerly known Istanbul][nyc history]. Like all other development dependencies it is installed by the following command: 
+
 ```
 npm install nyc --save-dev
 ```
 
 The script command inside `package.json` looks like this:
+
 ```json
 {
   "scripts": {
@@ -155,6 +166,7 @@ The script command inside `package.json` looks like this:
 ```
 
 Use the following command to run the tests including code coverage measurement:
+
 ```
 npm run coverage
 ```
@@ -162,6 +174,7 @@ npm run coverage
 To assure that nyc fails when code coverage doesn't meet the expectations, 
 put a `.nycrc` configuration file into your project root. 
 Here is an example including, among others, file name settings:
+
 ```json
 {
     "all": true,
@@ -191,11 +204,13 @@ Here is an example including, among others, file name settings:
 inside `README.md`.
 
 Install it with:
+
 ```
 npm install istanbul-badges-readme --save-dev
 ```
 
 Add it as script command:
+
 ```json
 {
   "scripts": {
@@ -206,17 +221,20 @@ Add it as script command:
 
 Assure that nyc outputs the report additionally as json by adding `"json-summary"` as reporter inside 
 the configuration file `.nycrc`:
+
 ```json
 "reporter": ["json-summary"]
 ```
 
 Add the following line to your `README.md` to show the current branch coverage:
+
 ```markdown
 ![Branches](https://img.shields.io/badge/Coverage-91.45%25-brightgreen.svg)
 ```
 
 More examples can be found [here][nyc code coverage badge].
 Finally run the following command after measuring the test coverage to update your `README.md`:
+
 ```
 npm run coverage-badge
 ```
@@ -226,12 +244,14 @@ npm run coverage-badge
 ### 6. Static code analysis with ESLint
 [ESLint][eslint about] is a static code analyzer (aka "linter") that detects typos and bugs inside the code.
 Use the following command to [install it][eslint getting started] and initialize its configuration file `.eslintrc.json`:
+
 ```
 npm install eslint --save-dev
 npx eslint --init
 ```
 
 Add the following script command inside `package.json`:
+
 ```json
 {
   "scripts": {
@@ -241,6 +261,7 @@ Add the following script command inside `package.json`:
 ```
 Adapt the command if your JavaScript files are located somewhere else.
 Use the following command to run static code analysis:
+
 ```
 npm run lint
 ```
@@ -250,11 +271,13 @@ npm run lint
 ### 7. Documentation generation with JSDoc
 [JSDoc][jsdoc] is a code documentation generator based on code comments.
 Use the following command to [install it][install jsdoc]:
+
 ```
 npm install jsdoc --save-dev
 ```
 
 Add the following script command inside `package.json`:
+
 ```json
 {
   "scripts": {
@@ -262,6 +285,7 @@ Add the following script command inside `package.json`:
   }
 }
 ```
+
 #### Command line parameters explained
 - `-d doc` uses the directory `doc` for the generated files
 - `--configure ./docs/jsdoc.json` points to the configuration file
@@ -269,6 +293,7 @@ Add the following script command inside `package.json`:
 - `./src/js/*.js` looks at all files ending with `.js` inside the directory `src/js/`
    
 To use markdown inside comments, the configuration file `jsdoc.json` will look like this:
+
 ```json
 {
     "plugins": [
@@ -278,6 +303,7 @@ To use markdown inside comments, the configuration file `jsdoc.json` will look l
 ```
 
 Use the following command to run documentation generation:
+
 ```
 npm run doc
 ```
@@ -287,6 +313,7 @@ npm run doc
 ### 8. Run the whole chain within a single command
 Running all previously mentioned commands in the right order for every change would be a tedious task.
 This script command shows how to put them into a chain and run them in sequence:
+
 ```json
 {
   "scripts": {
@@ -294,6 +321,7 @@ This script command shows how to put them into a chain and run them in sequence:
   }
 }
 ```
+
 The above example focuses on the raw sources and uses the build as finishing step. If lint fails, the chain fails early.
 `coverage` generates results for `coverage-badge` which changes the `README.md` that is included in `doc` generation.
 
@@ -301,6 +329,7 @@ Using `&` instead of `&&` can be used to run tasks in parallel. Parentheses coul
 The chain depends on which tools are used and if the build needs to run first. Don't hesitate to rearrange it as you like.
 
 The whole chain can be started using the following command:
+
 ```
 npm run package
 ```
@@ -441,6 +470,7 @@ This [living example][living example] can also be taken as reference.
 ## References
 
 - [Living example of a JavaScript repository with Continuous Integration][living example]
+- [Setting up an angular project][angular setup]
 - [About npm][about npm]
 - [How to install npm][install npm]
 - [The best time to npm init][npm init best practice]
@@ -494,3 +524,5 @@ This [living example][living example] can also be taken as reference.
 [install jsdoc]: https://github.com/jsdoc/jsdoc#installation-and-usage
 
 [about github actions]: https://docs.github.com/en/actions
+
+[angular setup]: https://angular.io/guide/setup-local
