@@ -7,8 +7,10 @@ tags: continuous integration javascript github npm parcel bundler jasmine eslint
 author: JohT
 ---
 Whereas there are numerous guidelines on how to setup specific tools like npm, 
-combining all components to a build assembly line can be a tedious task. This article is intended to be a starting point, that gets you up and running with pre selected tools and references. You can take it from there, exchange parts, add some more and dig into their configurations.
+combining all components to a build assembly line can be a tedious task. This article is intended to be a starting point, that gets you up and running with selected tools and references for vanilla JavaScript development. You can take it from there, exchange parts, add some more and dig into their configurations.
 
+**Addition 2021-09:** [Setting up an angular project][angular setup] shows that there are frameworks,
+that provide an easy way to set everything up. For them, only a few steps (4, 9 and 10) might be helpful.
 
 ## Prerequisites
 - Existing GIT Repository
