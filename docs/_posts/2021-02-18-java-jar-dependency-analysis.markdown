@@ -5,6 +5,7 @@ date:   2021-02-21 21:30:00 +0100
 categories: data
 tags: jqassistant neo4j cypher java jar artifact dependency
 author: JohT
+comments-issue-id: 14
 ---
 
 [jQAssistant][jqassistant] extracts meta data of java applications 
