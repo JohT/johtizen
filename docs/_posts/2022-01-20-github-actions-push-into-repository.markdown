@@ -96,7 +96,7 @@ Further reading: [GitHub Actions: A deep dive into "pull_request"[8]][GitHubActi
 
 ### GIT commands
 
-[Push to origin from GitHub Action [10]][PushOriginFromGitHubAction] shows an easy way to commit and push changed files to the repository. Here is an example using environment variables for the commit author and message:
+[Push to origin from GitHub Action [10]][PushOriginFromGitHubAction] shows an easy way to commit and push changed files to the repository. `git pull` fetches and merges intermediate changes and reduces the risk of race conditions when pipelines run in parallel. Here is an example using environment variables for the commit author and message:
 
 ```yml
 - name: GIT commit and push all changed files
@@ -106,6 +106,7 @@ Further reading: [GitHub Actions: A deep dive into "pull_request"[8]][GitHubActi
   run: |
     git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
     git config --global user.email "username@users.noreply.github.com"
+    git pull
     git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
     git push
 ```
@@ -119,6 +120,7 @@ The following example shows how to only commit changed files in the docs folder:
   run: |
     git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
     git config --global user.email "username@users.noreply.github.com"
+    git pull
     git add docs
     git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
     git push
@@ -196,6 +198,7 @@ jobs:
       run: |
         git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
         git config --global user.email "username@users.noreply.github.com"
+        git pull
         git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
         git push
 ```
@@ -261,6 +264,7 @@ jobs:
       run: |
         git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
         git config --global user.email "username@users.noreply.github.com"
+        git pull
         git add coverage devdist dist docs
         git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
         git push
@@ -317,6 +321,7 @@ At least the step that pushes the changed files into the repository needs to be 
   run: |
     git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
     git config --global user.email "username@users.noreply.github.com"
+    git pull
     git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
     git push
 ```
@@ -376,6 +381,7 @@ jobs:
       run: |
         git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
         git config --global user.email "joht@users.noreply.github.com"
+        git pull
         git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
         git push
 ```
@@ -498,7 +504,7 @@ jobs:
       if: env.is-auto-commit == false
       run: npm run package
     
-    # Commit generated and updated files
+    # Commit generated and ^d files
     - name: Display event name 
       run: echo "github.event_name=${{ github.event_name }}"
     - name: Commit build artifacts (dist, devdist, docs, coverage)
@@ -507,6 +513,7 @@ jobs:
       run: |
         git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
         git config --global user.email "username@users.noreply.github.com"
+        git pull
         git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
         git push
 ```
