@@ -14,3 +14,4 @@ Overview of the commands for this project.
 ## References:
  - [Jekyll - Quickstart](https://jekyllrb.com/docs/)
  - [stack overflow - Quickstart](https://stackoverflow.com/questions/53874469/how-to-make-maximum-utilization-of-the-screen-space-in-my-web-page-generated-fro/53881830#53881830)
+ - [How to install jekyll on Apple M1 Macbook](https://www.earthinversion.com/blogging/how-to-install-jekyll-on-appple-m1-macbook)
