@@ -546,9 +546,17 @@ For this some extra effort is needed as shown in [example 4](#example-4).
 - [3](#example-3) Decide for each step if it should run for the auto commit
 - [4](#example-4) Complex solution that executes the auto commit within a pull request e.g. to review it
 
+{% endraw %}
+
 <br>
 
-{% endraw %}
+----
+<br>
+
+## Updates
+
+- 2022-08-01: [Refine post to use git pull before auto commit](https://github.com/JohT/johtizen/pull/22)
+
 ## References
 - [[1] Continuous Integration][ContinuousIntegration]  
 https://martinfowler.com/articles/continuousIntegration.html
