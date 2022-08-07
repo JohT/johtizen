@@ -12,15 +12,11 @@ comments-issue-id: 13
 
 {% raw %}
 
-<br>
-
 ## Prerequisites
 
 - [GitHub [2]][GitHub] Repository
 - Basic knowledge of [GitHub Actions [3]][GitHubActions]
 - Workflow YML file in `.github/workflows/`
-
-<br>
 
 ## Introduction
 ### Strive for fast feedback
@@ -30,8 +26,6 @@ Be prepared that it will likely need a couple of attempts to get a GitHub Action
 - [Dump out all GitHub Actions context [4]][DumpContext]
 - [GitHub Actions Logging [5]][GitHubActionsLogging]
 - Dedicated experimental repository with a small, fast running pipeline.
-
-<br>
 
 ### GitHub Events
 Basic workflows simply use `on: [push]` to get triggered on every push regardless of the branch. The following slight enhancement is also widely used and adds some useful features. 
@@ -60,8 +54,6 @@ on:
 
 as described in [Github Actions workflow for merged/closed PRs [17]][MergedClosedPullRequestEvents]. However,  git commands won't work if the feature branch gets deleted right after the pull request merge.
 
-<br>
-
 #### What you can do with it:
 - Differentiate between pull request and push event: 
 ```
@@ -80,8 +72,6 @@ github.event.pull_request.head.ref
 github.event.pull_request.title
 ```
 
-<br>
-
 #### What you need to be aware of:
 - `actions/checkout@v2` behaves differently
 - `github.event.pull_request` properties will be empty when triggered by a main branch push
@@ -91,8 +81,6 @@ github.event.pull_request.title
 Further reading: [Events that trigger workflows [7]][WorkflowEvents]   
 <span style="font-size:1.8em;">&#128214;</span> 
 Further reading: [GitHub Actions: A deep dive into "pull_request"[8]][GitHubActionsPullRequestDeepDive]
-
-<br>
 
 ### GIT commands
 
@@ -129,8 +117,6 @@ The following example shows how to only commit changed files in the docs folder:
 <span style="font-size:1.8em;">&#9432;</span> 
 Note that the username in `username@users.noreply.github.com` needs to be replaced.
 
-<br>
-
 ## All-in-one solutions
 
 Already existing all-in-one solutions provide a good starting point for many use cases. 
@@ -155,8 +141,6 @@ If simplicity is key, also have a look at [example 1](#example-1).
 - Additional dependency
 - Only for Unix/Linux systems
 - [Example 1](#example-1) is nearly as easy
-
-<br>
 
 ## The easiest solution
 
@@ -279,8 +263,6 @@ Further reading: [Creating a personal access token [19]][GitHubPersonalAcessToke
 <span style="font-size:1.8em;">&#128214;</span> 
 Working example: [data-restructor-js [22]][data-restructor-js]
 
-<br>
-
 ## Run some steps on auto commit
 
 If some of the steps in the workflow should also be executed for the automatically generated commit/push, the commit name and author can be compared to detect the auto commit run. At least the step that creates the auto commit needs to be skipped when the auto commit triggered the workflow. Furthermore, a personal access token needs to be created, otherwise the whole workflow would be skipped for the automatically created commit.
@@ -388,8 +370,6 @@ jobs:
 
 <span style="font-size:1.8em;">&#9432;</span> 
 Note that a personal access token is needed as mentioned above.
-
-<br>
 
 ## GIT commit within a pull request
 
@@ -518,8 +498,6 @@ jobs:
         git push
 ```
 
-<br>
-
 ## Conclusion
  
 The easiest solution shown in [example 1](#example-1) pushes all changed files automatically when 
@@ -537,8 +515,6 @@ Whilst [example 2](#example-2) skips the whole workflow for the automatically cr
 To be able to review an automatically pushed commit it is required that it is executed within a pull request.
 For this some extra effort is needed as shown in [example 4](#example-4).
 
-<br>
-
 ## Examples
 
 - [1](#example-1) The easiest solution to auto commit on push (not within pull request)
@@ -551,7 +527,6 @@ For this some extra effort is needed as shown in [example 4](#example-4).
 <br>
 
 ----
-<br>
 
 ## Updates
 

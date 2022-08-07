@@ -17,15 +17,11 @@ that provide an easy way to set everything up. For them, only a few steps (4, 9 
 - Existing GIT Repository
 - Bash shell
 
-<br>
-
 ## 10 Steps to continuous integration
 These 10 steps cover right enough to get started. 
 They don't cover everything and are for sure not the right choice for every project. 
 Hopefully, the following steps help to save some time. 
 This [living example][living example] was the original trigger and can be taken as reference too. 
-
-<br/>
 
 ### 1. Package with npm
 [npm][about npm] manages dependencies and provides a registry to publish packaged code. 
@@ -36,8 +32,6 @@ and use the following command to create the `package.json` file:
 npm init
 ```
 Initializing npm within an already existing GIT repository [automatically fills in][npm init best practice] all repository related package fields.
-
-<br/>
 
 ### 2. Bundle with Parcel
 [Parcel][about parcel] is an easy to use bundler, that copies multiple files into one, minifies them, transforms them,...
@@ -95,8 +89,6 @@ or different variations (e.g. with/without IE compatibility).
 If you accounter "command not found" problems while building in the pipeline, 
 check if the first command in the chain is `npm ci`.  If it is still an issue, try to prefix the commands with `$(npm bin)/`, e.g. `$(npm bin)/parcel...`.
 
-<br/>
-
 ### 3. Unit Tests with Jasmine
 
 [Jasmine][Jasmine about] is a unit test framework for JavaScript 
@@ -149,8 +141,6 @@ philosophy in favour of a more commonly known and used structure:
 }
 ```
 
-<br/>
-
 ### 4. Unit Test coverage measurement with nyc
 [nyc][nyc test coverage] measures test code coverage and [extends the functionality of the formerly known Istanbul][nyc history]. Like all other development dependencies it is installed by the following command: 
 
@@ -200,8 +190,6 @@ Here is an example including, among others, file name settings:
 }
 ```
 
-<br/>
-
 ### 5. Include Code Coverage Badge in README.md
 [istanbul-badges-readme][nyc code coverage badge] provides an easy way to dynamically add the test code coverage
 inside `README.md`.
@@ -242,8 +230,6 @@ Finally run the following command after measuring the test coverage to update yo
 npm run coverage-badge
 ```
 
-<br/>
-
 ### 6. Static code analysis with ESLint
 [ESLint][eslint about] is a static code analyzer (aka "linter") that detects typos and bugs inside the code.
 Use the following command to [install it][eslint getting started] and initialize its configuration file `.eslintrc.json`:
@@ -268,8 +254,6 @@ Use the following command to run static code analysis:
 ```
 npm run lint
 ```
-
-<br/>
 
 ### 7. Documentation generation with JSDoc
 [JSDoc][jsdoc] is a code documentation generator based on code comments.
@@ -311,8 +295,6 @@ Use the following command to run documentation generation:
 npm run doc
 ```
 
-<br/>
-
 ### 8. Run the whole chain within a single command
 Running all previously mentioned commands in the right order for every change would be a tedious task.
 This script command shows how to put them into a chain and run them in sequence:
@@ -336,8 +318,6 @@ The whole chain can be started using the following command:
 ```
 npm run package
 ```
-
-<br/>
 
 ### 9. Continuous Integration with GitHub Actions
 [GitHub Actions][about github actions] are triggered by events like `git push`
@@ -383,8 +363,6 @@ It is much easier to run `npm run package` before a git commit and push. You can
 and `npm run build` in the GitHub Actions job, because their results should already be checked in. 
 On the other hand it can be helpful to see (e.g. on pull requests) if all steps succeeded.
 
-<br/>
-
 ### 10. Publishing to npm
 Even if publishing new versions could be automated, it is often preferred to do it manually by intention,
 especially if it doesn't happen that often and could imply to communicate breaking changes.
@@ -394,7 +372,6 @@ especially if it doesn't happen that often and could imply to communicate breaki
 <br>
 
 ----
-<br>
 
 ## Summary
 
@@ -463,7 +440,6 @@ This [living example][living example] can also be taken as reference.
 <br>
 
 ----
-<br>
 
 ## Updates
 
