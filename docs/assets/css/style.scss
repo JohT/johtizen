@@ -8,13 +8,15 @@ header h1 { color: #63c0f5; text-align: center; font-size: 36px}
 header h1:before { content: "\270E "; font-size: 36px; }
 header h2 {text-align: center}
 
-h1, h2, h3, h4, h5, h6 { color: #63c0f5 }
+h1, h2, h3, h4, h5, h6 { color: #63c0f5;}
+section>h2, h3, h4, h5, h6 { margin-top: 2em; }
+
 hr {  border-bottom: 1px dashed #63c0f5; color: #63c0f5; }
 
 img {vertical-align: middle;}
 
 #main_content h1 {
-    font-size: 32px;
+    font-size: 30px;
 }
 
 #main_content h2 {

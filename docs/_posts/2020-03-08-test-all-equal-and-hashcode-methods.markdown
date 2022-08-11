@@ -48,8 +48,6 @@ In this post, I'll show you an effective way to test all `equals` and `hashCode`
 </details>
 The source code for this example can be found 
 [here](https://github.com/JohT/snippets/tree/master/archunit-equalsverifier-combined).
-<br>
-
 
 ## JUnit Test Class
 
@@ -79,8 +77,6 @@ public class EqualsHashcodeTest {
 
 3. [FulfillEqualsAndHashcodeContract] is the most important part.  
 It connects [EqualsVerifier] to [ArchUnit] by extending the abstract class `ArchCondition`.
-
-<br>
 
 ## Connecting [EqualsVerifier] to [ArchUnit]
 
@@ -124,8 +120,6 @@ class FulfillEqualsAndHashcodeContract extends ArchCondition<JavaCodeUnit> {
 2. The report of the [EqualsVerifier] is converted to a `SimpleConditionEvent` and added to the other events. If all checks are successful, the test will pass. If one of the 
 `CodeUnits` doesn't fulfill the contract, it will be listed in the message of the failed test.
 
-<br>
-
 ## Upgrading a test to a specification
 
 There is a significant difference in the purpose for which the test is written for.
@@ -133,8 +127,6 @@ Finding bugs is the most obvious one.
 Documenting, what the code should do and how it's expected to behave 
 takes it to the next level. It can now be seen as a `specification`.
 Have a look at [behaviour-driven development], if you want to find out more about it.
-
-<br>
 
 ## Specification using [EqualsVerifier] and [ArchUnit]
 

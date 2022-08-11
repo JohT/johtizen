@@ -12,8 +12,6 @@ comments-issue-id: 14
 and writes them into [Neo4j][neo4j], a native graph database. This blog shows how these tools can be
 used to analyze java jar dependencies e.g. for version updates.
 
-<br>
-
 ## 1. Getting started
 As described [here][jqassistant getting started], all you need to get started with [jQAssistant][jqassistant getting started] is:
 - [Download it][jqassistant getting started] 
@@ -23,8 +21,6 @@ As described [here][jqassistant getting started], all you need to get started wi
 - Sign in without user and password
 - Click on the database symbol on the top left corner
 
-<br>
-
 ## 2. Get familiar with the data
 
 [Neo4j][neo4j] is a graph database and uses [Cypher][neo4j cypher manual] as query language.
@@ -32,8 +28,6 @@ For those who are used to SQL, ["Comparing SQL with Cypher"][neo4j sql to cypher
 
 To get familiar with the data, use the database symbol on top left corner and select any of the node types to
 get some examples. Node symbols can be extended to show all relationships. Switching to table view shows all fields and their contents. 
-
-<br>
 
 ## 3. Query the data
 
@@ -78,8 +72,6 @@ Caused by the way the jars are analyzed, there are multiple "Class" nodes with t
 
 To summarize, the data is not yet ready to use for specific requirements.
 
-<br>
-
 ## 4. Data Refinement
 Compared to classical relational databases, graph databases like [Neo4j][neo4j] are by nature very flexible 
 when it comes to relationships between nodes. The `MERGE` clause can be used to create a new
@@ -117,8 +109,6 @@ It is also possible to add another `MERGE` clause to create one more relationshi
 `(sourceArtifact)-[:REQUIRES]->(dependencyArtifact)` adds the expected but missing directional relationship
 between an artifact and those artifacts it requires.
 
-<br>
-
 ## 4. Query refined data
 
 After adding relationships, artifacts that require other artifacts can easily be queried using:
@@ -142,11 +132,6 @@ RETURN changed, dependent LIMIT 10
 
 ![Neo4j Artifact Graph]({{site.baseurl}}/assets/img/Neo4jArtifactGraph.png)
 
-<br>
-
----
-
-<br>
 
 ## Summary
 
@@ -177,7 +162,6 @@ RETURN changed, dependent LIMIT 10
 
 ---
 
-<br>
 
 ## References
 - [About jQAssistant][jqassistant]
