@@ -32,5 +32,10 @@ plugins:
 
 # https://utteranc.es
 utterances-comments:
-  repo: joht/johtizen # Choose the repository utterances will connect to. eg: owner/repo
+  repo: joht/johtizen # Choose the repository utterances will connect to. (owner/repo)
   theme: github-dark # Choose an Utterances theme that matches your blog. 'github-light' is default
+
+# https://giscus.app
+giscus-comments:
+  repo: joht/johtizen # Choose the repository to connect to. (owner/repo)
+  theme: dark # Choose an theme that matches your blog.

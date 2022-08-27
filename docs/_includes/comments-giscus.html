@@ -1,0 +1,19 @@
+{% if site.giscus-comments.repo and page.discussions-id  %}
+<br>
+<hr>
+<br>
+<script src="https://giscus.app/client.js"
+        data-repo="{{ site.giscus-comments.repo }}"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkyNDU3OTk5NTY="
+        data-mapping="number"
+        data-term="{{ page.discussions-id }}"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="{{ site.giscus-comments.theme }}"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+{% endif %}
