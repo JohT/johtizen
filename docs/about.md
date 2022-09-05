@@ -5,13 +5,13 @@ permalink: /about/
 ---
 
 # About me
-- software engineer
+- passionate software engineer
 - team lead
 - 20+ years experience
 - professional experience with Java SE/EE and JavaScript 
 - professional experience on mainframe with COBOL, PL-1 and REXX
 - professional experience with SQL
-- some experience with DSP programming using C and C++
+- personal experience with DSP programming and C/C++
 
 ### Open Source Projects
 - [convolution-benchmarks](https://github.com/JohT/convolution-benchmarks) Benchmark convolution implementations in C++
@@ -28,5 +28,13 @@ permalink: /about/
 - [JSON-B reference implementation Yasson](https://github.com/eclipse-ee4j/yasson/pull/224) Support for @ConstructorProperties
 - [AxonFramework](https://github.com/AxonFramework/AxonFramework/pull/1163) @ConstructorProperties Annotation for serialized objects
 
-# Visit me
+### Visit me
 - [GitHub/JohT](https://github.com/joht)
+
+# This blog is made with:
+- [GitHub Pages](https://docs.github.com/en/pages), to create a website directly from a repository on GitHub.com
+- [Jekyll](https://jekyllrb.com), a blog-aware static site generator in Ruby.   
+For more details see [Setting up a GitHub Pages site with Jekyll](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll)
+- [Hacker Theme](https://github.com/pages-themes/hacker), is a Jekyll theme for GitHub Pages
+- [utteranc.es](https://utteranc.es), a lightweight comments widget built on GitHub issues.
+- [giscus](https://giscus.app), a comment system powered by GitHub Discussions.

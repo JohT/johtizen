@@ -9,8 +9,10 @@ layout: default
 
 {{content}}
 
-{% include comments-utterances.html %}
-
 {% if page.tags %}
   <small>tags: <em>{{ page.tags | join: "</em> - <em>" }}</em></small>
 {% endif %}
+
+{% include comments-giscus.html %}
+{% include comments-utterances.html %}
+{% include copy-code-to-clipboard.html %}
