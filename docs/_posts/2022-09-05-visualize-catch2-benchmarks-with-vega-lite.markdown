@@ -753,7 +753,6 @@ https://www.npmjs.com
 https://github.com/Automattic/node-canvas#compiling
 - [[11] Vega-Lite Online Editor][VegaLiteEditor]   
 https://vega.github.io/editor/#/custom/vega-lite
-[VegaLiteFacet]: https://vega.github.io/vega-lite/docs/facet.html
 - [[12] Faceting a Plot into a Trellis Plot][VegaLiteFacet]   
 https://vega.github.io/vega-lite/docs/facet.html
 - [[13] Vega-Lite From the Command Line using npx][VegaLiteSVG]   
