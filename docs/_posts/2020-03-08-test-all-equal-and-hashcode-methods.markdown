@@ -5,7 +5,7 @@ date:   2020-03-08 20:00:00 +0100
 categories: testing
 tags: testing equals hashCode archunit equalsverifier
 author: JohT
-comments-issue-id: 16
+discussions-id: 33
 ---
 One thing, that leads to many discussions, is how and if `equals` and `hashCode` methods should be tested.
 Most of the time these methods get generated.

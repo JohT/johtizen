@@ -5,7 +5,7 @@ date:   2022-08-03 08:30:00 +0100
 categories: automation
 tags: renovate cpm dependency version
 author: JohT
-comments-issue-id: 25
+discussions-id: 32
 ---
 
 Looking for new versions of libraries and updating them can be a tedious task, especially if you have to deal with multiple dependencies and many repositories.

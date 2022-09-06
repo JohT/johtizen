@@ -36,5 +36,4 @@ permalink: /about/
 - [Jekyll](https://jekyllrb.com), a blog-aware static site generator in Ruby.   
 For more details see [Setting up a GitHub Pages site with Jekyll](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll)
 - [Hacker Theme](https://github.com/pages-themes/hacker), is a Jekyll theme for GitHub Pages
-- [utteranc.es](https://utteranc.es), a lightweight comments widget built on GitHub issues.
 - [giscus](https://giscus.app), a comment system powered by GitHub Discussions.
