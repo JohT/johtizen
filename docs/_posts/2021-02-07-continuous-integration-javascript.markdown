@@ -5,13 +5,18 @@ date:   2021-02-21 08:00:00 +0100
 categories: build
 tags: continuous integration javascript github npm parcel bundler jasmine eslint jsdoc
 author: JohT
-comments-issue-id: 15
+discussions-id: 36
 ---
 Whereas there are numerous guidelines on how to setup specific tools like npm, 
 combining all components to a build assembly line can be a tedious task. This article is intended to be a starting point, that gets you up and running with selected tools and references for vanilla JavaScript development. You can take it from there, exchange parts, add some more and dig into their configurations.
 
 **Addition 2021-09:** [Setting up an angular project][angular setup] shows that there are frameworks,
 that provide an easy way to set everything up. For them, only a few steps (4, 9 and 10) might be helpful.
+
+### Table of Contents
+{:.no_toc}
+1. A markdown unordered list which will be replaced with the table of contents.
+{:toc}
 
 ## Prerequisites
 - Existing GIT Repository

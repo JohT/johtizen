@@ -5,12 +5,17 @@ date:   2021-02-21 21:30:00 +0100
 categories: data
 tags: jqassistant neo4j cypher java jar artifact dependency
 author: JohT
-comments-issue-id: 14
+discussions-id: 35
 ---
 
 [jQAssistant][jqassistant] extracts meta data of java applications 
 and writes them into [Neo4j][neo4j], a native graph database. This blog shows how these tools can be
 used to analyze java jar dependencies e.g. for version updates.
+
+### Table of Contents
+{:.no_toc}
+1. A markdown unordered list which will be replaced with the table of contents.
+{:toc}
 
 ## 1. Getting started
 As described [here][jqassistant getting started], all you need to get started with [jQAssistant][jqassistant getting started] is:

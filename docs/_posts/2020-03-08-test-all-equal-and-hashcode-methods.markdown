@@ -5,7 +5,7 @@ date:   2020-03-08 20:00:00 +0100
 categories: testing
 tags: testing equals hashCode archunit equalsverifier
 author: JohT
-comments-issue-id: 16
+discussions-id: 33
 ---
 One thing, that leads to many discussions, is how and if `equals` and `hashCode` methods should be tested.
 Most of the time these methods get generated.
@@ -14,6 +14,11 @@ On the other hand, not testing these methods leads to poor test coverage statist
 In rare cases, when these methods are not regenerated or edited manually, 
 they might cause bugs, that are very hard to find.
 In this post, I'll show you an effective way to test all `equals` and `hashCode` methods within one single test class.
+
+### Table of Contents
+{:.no_toc}
+1. A markdown unordered list which will be replaced with the table of contents.
+{:toc}
 
 ## Libraries
 - [![JUnit 5](https://img.shields.io/maven-central/v/org.junit.jupiter/junit-jupiter-api.svg?style=flat-square&logo=java&label=junit5)](https://github.com/junit-team/junit5) for unit testing, 
