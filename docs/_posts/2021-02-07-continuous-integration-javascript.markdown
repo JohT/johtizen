@@ -13,6 +13,11 @@ combining all components to a build assembly line can be a tedious task. This ar
 **Addition 2021-09:** [Setting up an angular project][angular setup] shows that there are frameworks,
 that provide an easy way to set everything up. For them, only a few steps (4, 9 and 10) might be helpful.
 
+### Table of Contents
+{:.no_toc}
+1. A markdown unordered list which will be replaced with the table of contents.
+{:toc}
+
 ## Prerequisites
 - Existing GIT Repository
 - Bash shell

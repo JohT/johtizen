@@ -10,6 +10,11 @@ discussions-id: 34
 
 [Continuous Integration [1]][ContinuousIntegration] goes far beyond testing and building code nowadays. Test code coverage and other reports might get created, documentation might get updated and metrics and statistics might get refreshed. This article shows how these results can be pushed back into the repository using [GitHub Actions [3]][GitHubActions].
 
+### Table of Contents
+{:.no_toc}
+1. A markdown unordered list which will be replaced with the table of contents.
+{:toc}
+
 {% raw %}
 
 ## Prerequisites

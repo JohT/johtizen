@@ -15,6 +15,11 @@ In rare cases, when these methods are not regenerated or edited manually,
 they might cause bugs, that are very hard to find.
 In this post, I'll show you an effective way to test all `equals` and `hashCode` methods within one single test class.
 
+### Table of Contents
+{:.no_toc}
+1. A markdown unordered list which will be replaced with the table of contents.
+{:toc}
+
 ## Libraries
 - [![JUnit 5](https://img.shields.io/maven-central/v/org.junit.jupiter/junit-jupiter-api.svg?style=flat-square&logo=java&label=junit5)](https://github.com/junit-team/junit5) for unit testing, 
 [![JUnit 4](https://img.shields.io/maven-central/v/junit/junit.svg?style=flat-square&logo=java&label=junit4)](https://github.com/junit-team/junit4) may be used as well

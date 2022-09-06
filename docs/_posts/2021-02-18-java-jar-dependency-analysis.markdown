@@ -12,6 +12,11 @@ discussions-id: 35
 and writes them into [Neo4j][neo4j], a native graph database. This blog shows how these tools can be
 used to analyze java jar dependencies e.g. for version updates.
 
+### Table of Contents
+{:.no_toc}
+1. A markdown unordered list which will be replaced with the table of contents.
+{:toc}
+
 ## 1. Getting started
 As described [here][jqassistant getting started], all you need to get started with [jQAssistant][jqassistant getting started] is:
 - [Download it][jqassistant getting started] 
