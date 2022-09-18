@@ -78,7 +78,7 @@ github.event.pull_request.title
 ```
 
 #### What you need to be aware of:
-- `actions/checkout@v2` behaves differently
+- `actions/checkout@v3` behaves differently
 - `github.event.pull_request` properties will be empty when triggered by a main branch push
 - `github.event.commits` properties will be empty when triggered by a pull request event
 
@@ -89,7 +89,7 @@ Further reading: [GitHub Actions: A deep dive into "pull_request"[8]][GitHubActi
 
 ### GIT commands
 
-[Push to origin from GitHub Action [10]][PushOriginFromGitHubAction] shows an easy way to commit and push changed files to the repository. `git pull` fetches and merges intermediate changes and reduces the risk of race conditions when pipelines run in parallel. Here is an example using environment variables for the commit author and message:
+[Push to origin from GitHub Action [10]][PushOriginFromGitHubAction] shows an easy way to commit and push changed files to the repository. Here is an example using environment variables for the commit author and message:
 
 ```yml
 - name: GIT commit and push all changed files
@@ -99,7 +99,6 @@ Further reading: [GitHub Actions: A deep dive into "pull_request"[8]][GitHubActi
   run: |
     git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
     git config --global user.email "username@users.noreply.github.com"
-    git pull
     git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
     git push
 ```
@@ -113,7 +112,6 @@ The following example shows how to only commit changed files in the docs folder:
   run: |
     git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
     git config --global user.email "username@users.noreply.github.com"
-    git pull
     git add docs
     git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
     git push
@@ -169,10 +167,10 @@ jobs:
       CI_COMMIT_MESSAGE: Continuous Integration Build Artifacts
       CI_COMMIT_AUTHOR: Continuous Integration
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     # Build steps
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
       with:
         node-version: '12' 
     - name: Node Install
@@ -187,7 +185,6 @@ jobs:
       run: |
         git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
         git config --global user.email "username@users.noreply.github.com"
-        git pull
         git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
         git push
 ```
@@ -196,7 +193,7 @@ jobs:
 Note that it isn't necessary to prevent the workflow from being triggered again by the automatically executed push. [Triggering a workflow from a workflow [7]][WorkflowFromWorkflow] states that "events triggered by the `GITHUB_TOKEN` will not create a new workflow run". 
 
 <span style="font-size:1.8em;">&#9432;</span> 
-Note that if you use a personal access token for [actions/checkout@v2 [14]][GitHubActionsCheckout], the workflow will trigger itself again resulting in an endless loop. The next example shows how to solve this.
+Note that if you use a personal access token for [actions/checkout [14]][GitHubActionsCheckout], the workflow will trigger itself again resulting in an endless loop. The next example shows how to solve this.
 
 <span style="font-size:1.8em;">&#9888;</span> 
 Be aware that this won't work when the main branch is protected. One way to overcome this is to create
@@ -232,12 +229,12 @@ jobs:
       CI_COMMIT_MESSAGE: Continuous Integration Build Artifacts
       CI_COMMIT_AUTHOR: Continuous Integration
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         token: ${{ secrets.WORKFLOW_GIT_ACCESS_TOKEN }}
 
     # Build steps
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
       with:
         node-version: '12' 
     - name: Node Install
@@ -253,7 +250,6 @@ jobs:
       run: |
         git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
         git config --global user.email "username@users.noreply.github.com"
-        git pull
         git add coverage devdist dist docs
         git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
         git push
@@ -308,7 +304,6 @@ At least the step that pushes the changed files into the repository needs to be 
   run: |
     git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
     git config --global user.email "username@users.noreply.github.com"
-    git pull
     git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
     git push
 ```
@@ -333,7 +328,7 @@ jobs:
       CI_COMMIT_MESSAGE: Continuous Integration Build Artifacts
       CI_COMMIT_AUTHOR: ${{ github.event.repository.name }} Continuous Integration
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         token: ${{ secrets.WORKFLOW_GIT_ACCESS_TOKEN }}
 
@@ -351,7 +346,7 @@ jobs:
       run: echo "is-auto-commit=${{ env.is-auto-commit }}"
 
     # Build (will also run on auto commit)
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
       with:
         node-version: '12' 
     - name: Install node packages
@@ -368,7 +363,6 @@ jobs:
       run: |
         git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
         git config --global user.email "joht@users.noreply.github.com"
-        git pull
         git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
         git push
 ```
@@ -384,14 +378,14 @@ If it is mandatory that automatically changed files need to be pushed within a p
 
 - [Ignoring paths [11]][GitHubActionsIgnoringPaths] is off the table, since a skipped workflow run on the latest commit in the pull request is currently seen as "unsuccessful" (yellow state) and can't be merged if a successful run is mandatory. 
 
-- [actions/checkout@v2 [14]][GitHubActionsCheckout] behaves differently for the "pull_request" event and needs to be tweaked to be able to get the intended commit message and author using git commands.
+- [actions/checkout [14]][GitHubActionsCheckout] behaves differently for the "pull_request" event and needs to be tweaked to be able to get the intended commit message and author using git commands.
 
 ### Adapt Checkout
 
-The ref parameter of [actions/checkout@v2 [14]][GitHubActionsCheckout] needs to be set to the head reference of the [pull request [8]][GitHubActionsPullRequestDeepDiveCheckout] to checkout the feature branch and be able to get the last commit of it:
+The ref parameter of [actions/checkout [14]][GitHubActionsCheckout] needs to be set to the head reference of the [pull request [8]][GitHubActionsPullRequestDeepDiveCheckout] to checkout the feature branch and be able to get the last commit of it:
 
 ```yml
-- uses: actions/checkout@v2
+- uses: actions/checkout@v3
   with:
     ref: ${{ github.event.pull_request.head.ref }}
 ```
@@ -455,7 +449,7 @@ jobs:
     steps:
 
     # Checkout that works with "push" and "pull_request" trigger event
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         ref: ${{ github.event.pull_request.head.ref }}
         token: ${{ secrets.WORKFLOW_GIT_ACCESS_TOKEN }}
@@ -478,7 +472,7 @@ jobs:
       run: echo "is-auto-commit=${{ env.is-auto-commit }}"
 
     # Build
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
       if: env.is-auto-commit == false
       with:
         node-version: '12'
@@ -489,7 +483,7 @@ jobs:
       if: env.is-auto-commit == false
       run: npm run package
     
-    # Commit generated and ^d files
+    # Commit generated and commit files
     - name: Display event name 
       run: echo "github.event_name=${{ github.event_name }}"
     - name: Commit build artifacts (dist, devdist, docs, coverage)
@@ -498,7 +492,6 @@ jobs:
       run: |
         git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
         git config --global user.email "username@users.noreply.github.com"
-        git pull
         git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
         git push
 ```
@@ -536,6 +529,7 @@ For this some extra effort is needed as shown in [example 4](#example-4).
 ## Updates
 
 - 2022-08-01: [Refine post to use git pull before auto commit](https://github.com/JohT/johtizen/pull/22)
+- 2022-09-18: [Undo git pull before auto commit and update actions](https://github.com/JohT/johtizen/pull/32)
 
 ## References
 - [[1] Continuous Integration][ContinuousIntegration]  
