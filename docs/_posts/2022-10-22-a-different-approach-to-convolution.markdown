@@ -5,7 +5,7 @@ date: 2022-10-22 20:00:00 +0100
 categories: algorithm
 tags: c++ convolution algorithm
 author: JohT
-discussions-id: 37
+discussions-id: 39
 use-mathjax: true
 ---
 
