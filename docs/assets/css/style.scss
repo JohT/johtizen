@@ -82,3 +82,12 @@ pre.highlight {
     opacity: 1;
   }
 }
+
+details {
+    cursor: pointer;
+    margin-top: 1em;
+    padding: 0.5em;
+    border: solid rgb(100, 100, 100);
+    border-radius: 12px;
+    border-width: 1px;
+}
