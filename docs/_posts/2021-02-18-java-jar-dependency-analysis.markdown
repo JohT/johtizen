@@ -152,11 +152,11 @@ RETURN source.fileName, required.fileName
 
 With [variable length relationships][neo4j variable length relationship] it is possible to query
 in a recursive manner. Here is an example that returns all artifacts
-that could be affected by a version update of `/org.neo4j-neo4j-cypher-ir-3.5-3.5.14.jar`:
+that could be affected by a version update of e.g. `/org.neo4j-neo4j-cypher-ir-3.5-3.5.14.jar`:
 
 ```cypher
  MATCH (changed:Artifact)<-[:REQUIRES*]-(dependent:Artifact)
- WHERE changed.fileName = "/org.neo4j-neo4j-cypher-ir-3.5-3.5.14.jar"
+ WHERE changed.fileName STARTS WITH "/org.neo4j-neo4j-cypher-ir"
 RETURN changed, dependent LIMIT 10
 ```
 
@@ -182,7 +182,7 @@ Here are all steps using the simple data refinement in a nutshell:
 
   ```cypher
    MATCH (changed:Artifact)<-[:DEPENDS_ON*]-(dependent:Artifact)
-   WHERE changed.fileName = "/org.neo4j-neo4j-cypher-ir-3.5-3.5.14.jar"
+   WHERE changed.fileName STARTS WITH "/org.neo4j-neo4j-cypher-ir"
   RETURN changed, dependent LIMIT 10
   ```
 
@@ -210,7 +210,7 @@ Here are all steps using the manual data refinement in a nutshell:
 
   ```cypher
    MATCH (changed:Artifact)<-[:REQUIRES*]-(dependent:Artifact)
-   WHERE changed.fileName = "/org.neo4j-neo4j-cypher-ir-3.5-3.5.14.jar"
+   WHERE changed.fileName STARTS WITH "/org.neo4j-neo4j-cypher-ir"
   RETURN changed, dependent LIMIT 10
   ```
 
