@@ -84,7 +84,25 @@ Caused by the way the jars are analyzed, there are multiple "Class" nodes with t
 
 To summarize, the data is not yet ready to use for specific requirements.
 
-## Data Refinement
+## Simple Data Refinement
+
+(Updated December 2022)
+
+The easiest way to close the gap between separately analyzed artifacts is provided by [jQAssistant][jqassistant]. The `analyze` command task can be configured to use `-concepts` to further enrich the nodes and their relationships. As described in [Multiple jars with unique types (Stack Overflow)][multiple jars], the [classpath:Resolve Concept][concept classpath resolve] can be used to connect the types of the different artifacts. Furthermore, [Concept dependency:Artifact][concept dependency artifact] adds the `DEPENDS_ON` relationship for Artifact nodes. Both of them combined into one command leads to:
+
+```shell
+jqassistant.sh analyze -concepts classpath:Resolve dependency:Artifact
+```
+
+Further concepts and constraints can be found in the [jQAssistant User Manual][jqassistant rules].
+
+<span style="font-size:1.8em;">&#9432;</span>
+Remember to stop the server before analyzing the data.
+
+<span style="font-size:1.8em;">&#9432;</span>
+Note that [Simple Data Refinement](#simple-data-refinement) leads to a `DEPENDS_ON` relationship between Artifact nodes. In [Manual Data Refinement](#manual-data-refinement) below we introduce a `REQUIRES` relationship.
+
+## Manual Data Refinement
 
 Compared to classical relational databases, graph databases like [Neo4j][neo4j] are by nature very flexible
 when it comes to relationships between nodes. The `MERGE` clause can be used to create a new
@@ -148,35 +166,61 @@ RETURN changed, dependent LIMIT 10
 
 ## Summary
 
-Here are all steps in a nutshell:
+### Simple
+
+(Updated December 2022)
+
+Here are all steps using the simple data refinement in a nutshell:
 
 - Download [jQAssistant][jqassistant getting started]
-- Scan a directory (e.g. "lib") with jars: `bin/jqassistant.sh scan -f lib` (Linux)
-- Start the web application: `bin/jqassistant.sh server` (Linux)
+- Scan a directory (e.g. "lib") with jars: `bin/jqassistant.sh scan -f lib` (POSIX)
+- Analyze with concepts: `bin/jqassistant.sh analyze -concepts classpath:Resolve dependency:Artifact` (POSIX)
+- Start the web application: `bin/jqassistant.sh server` (POSIX)
+- Open [http://localhost:7474](http://localhost:7474)
+- Sign in without user or password
+- Query the graph of all artifacts that would be affected by a version update of a given artifact:
+
+  ```cypher
+   MATCH (changed:Artifact)<-[:DEPENDS_ON*]-(dependent:Artifact)
+   WHERE changed.fileName = "/org.neo4j-neo4j-cypher-ir-3.5-3.5.14.jar"
+  RETURN changed, dependent LIMIT 10
+  ```
+
+### Manual
+
+Here are all steps using the manual data refinement in a nutshell:
+
+- Download [jQAssistant][jqassistant getting started]
+- Scan a directory (e.g. "lib") with jars: `bin/jqassistant.sh scan -f lib` (POSIX)
+- Start the web application: `bin/jqassistant.sh server` (POSIX)
 - Open [http://localhost:7474](http://localhost:7474)
 - Sign in without user or password
 - Create relationships between artifacts and types and return a list of dependent jars with the following query:
 
-```cypher
- MATCH (sourceArtifact:Artifact)-[:REQUIRES]->(requiredType:Type) 
-      ,(dependencyType:Type)<-[:CONTAINS]-(dependencyArtifact:Artifact)
- WHERE dependencyType.fqn = requiredType.fqn
- MERGE (requiredType)-[:IS_SAME_AS]-(dependencyType)
- MERGE (sourceArtifact)-[:REQUIRES]->(dependencyArtifact)
-RETURN sourceArtifact.fileName, dependencyArtifact.fileName
-```
+  ```cypher
+   MATCH (sourceArtifact:Artifact)-[:REQUIRES]->(requiredType:Type) 
+        ,(dependencyType:Type)<-[:CONTAINS]-(dependencyArtifact:Artifact)
+   WHERE dependencyType.fqn = requiredType.fqn
+   MERGE (requiredType)-[:IS_SAME_AS]-(dependencyType)
+   MERGE (sourceArtifact)-[:REQUIRES]->(dependencyArtifact)
+  RETURN sourceArtifact.fileName, dependencyArtifact.fileName
+  ```
 
 - Query the graph of all artifacts that would be affected by a version update of a given artifact:
 
-```cypher
- MATCH (changed:Artifact)<-[:REQUIRES*]-(dependent:Artifact)
- WHERE changed.fileName = "/org.neo4j-neo4j-cypher-ir-3.5-3.5.14.jar"
-RETURN changed, dependent LIMIT 10
-```
+  ```cypher
+   MATCH (changed:Artifact)<-[:REQUIRES*]-(dependent:Artifact)
+   WHERE changed.fileName = "/org.neo4j-neo4j-cypher-ir-3.5-3.5.14.jar"
+  RETURN changed, dependent LIMIT 10
+  ```
 
 <br>
 
 ---
+
+## Updates
+
+- 2022-12-19: [Add jQAssistant command for simple data refinement to Java JAR Dependencies Blog](https://github.com/JohT/johtizen/pull/41)
 
 ## References
 
@@ -190,6 +234,10 @@ RETURN changed, dependent LIMIT 10
 - [Update relationships with Neo4j][neo4j merge relationship]
 - [Variable length relationships with Neo4j][neo4j variable length relationship]
 - [Cartesian product][cartesian product]
+- [Multiple jars with unique types (Stack Overflow)][multiple jars]
+- [Concept classpath:Resolve][concept classpath resolve]
+- [Concept dependency:Artifact][concept dependency artifact]
+- [Rules provided by the jQAssistant Java Plugin][jqassistant rules]
 
 [jqassistant]: https://jqassistant.org
 [jqassistant getting started]: https://jqassistant.org/get-started/
@@ -201,3 +249,7 @@ RETURN changed, dependent LIMIT 10
 [neo4j merge relationship]: https://neo4j.com/docs/cypher-manual/current/clauses/merge/#merge-merge-on-a-relationship
 [neo4j variable length relationship]:https://neo4j.com/docs/cypher-manual/current/clauses/match/#varlength-rels
 [cartesian product]: https://en.wikipedia.org/wiki/Cartesian_product
+[multiple jars]: https://stackoverflow.com/questions/33940842/multiple-jars-with-unique-types
+[concept classpath resolve]: https://jqassistant.github.io/jqassistant/doc/1.11.1/manual/#classpath:Resolve
+[concept dependency artifact]: https://jqassistant.github.io/jqassistant/doc/1.8.0/#dependency:Artifact
+[jqassistant rules]: https://jqassistant.github.io/jqassistant/doc/1.11.1/manual/#_rules_provided_by_the_jqassistant_java_plugin
