@@ -91,7 +91,7 @@ To summarize, the data is not yet ready to use for specific requirements.
 The easiest way to close the gap between separately analyzed artifacts is provided by [jQAssistant][jqassistant]. The `analyze` command task can be configured to use `-concepts` to further enrich the nodes and their relationships. As described in [Multiple jars with unique types (Stack Overflow)][multiple jars], the [classpath:Resolve Concept][concept classpath resolve] can be used to connect the types of the different artifacts. Furthermore, [Concept dependency:Artifact][concept dependency artifact] adds the `DEPENDS_ON` relationship for Artifact nodes. Both of them combined into one command leads to:
 
 ```shell
-jqassistant.sh analyze -concepts classpath:Resolve dependency:Artifact
+bin/jqassistant.sh analyze -concepts classpath:Resolve dependency:Artifact
 ```
 
 Further concepts and constraints can be found in the [jQAssistant User Manual][jqassistant rules].
