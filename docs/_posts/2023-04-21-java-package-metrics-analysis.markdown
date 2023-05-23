@@ -575,6 +575,7 @@ RETURN p.fqn AS packageName, p.numberAbstractTypes, p.numberTypes, abstractness
 
 <details><summary markdown="span">Cypher Query - Calculate Distance between Abstractness and Instability</summary>
 
+```cypher
 //Calculate distance between abstractness and instability
 
 MATCH (artifact:Artifact)-[:CONTAINS]->(package:Package)-[:CONTAINS]->(type:Type)
@@ -584,7 +585,7 @@ MATCH (artifact:Artifact)-[:CONTAINS]->(package:Package)-[:CONTAINS]->(type:Type
      ,count(type) AS typesInPackage
 RETURN artifact.fileName, package.fqn, distance, package.abstractness, package.instability, typesInPackage
  ORDER BY distance DESC, package.fqn
- LIMIT 30
+```
 
 </details>
 
