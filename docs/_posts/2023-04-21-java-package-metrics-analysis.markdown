@@ -428,7 +428,7 @@ RETURN p.fqn AS packageName
 
 As described in [Object-Oriented Design Quality Metrics][MetricsRobertMartin], the *Instability* metric is expressed as the ratio of the number of outgoing dependencies of a module (i.e., the number of code units that depend on it) to the total number of dependencies (i.e., the sum of incoming and outgoing dependencies):
 
-$$ Instability = I = \frac{Ce}{Ce + Ca} = \frac{Efferent\:Coupling}{Efferent\:Coupling + Afferent\:Coupling} = \frac{Outgoing\:Dependencies}{Outgoing\:Dependencies + Incoming\:Dependencies} $$
+$$ Instability = I = \frac{Outgoing\:Dependencies}{All\:Dependencies} $$
 
 Small values near zero indicate low *Instability*. With no outgoing but some incoming dependencies the *Instability* is zero which is denoted as *maximally stable*. Such code units are more rigid and difficult to change without impacting other parts of the system.
 If they are changed less because of that, they are considered *stable*.
@@ -472,9 +472,9 @@ RETURN p.fqn
 
 As mentioned above we've already taken into account that there is a difference between interface (abstract) and type (implementation) dependencies. But changing an abstract class or interface can even be harder than changing an implementation type. So why are they treated differently? If used the right way e.g. by applying the *Open/Closed Principle*, interfaces are made to depend on them safely. They provide abstraction and make it easy to extend their implementation. They are "closed for modification" which make them "trustworthy" to depend on.
 
-Based on [Object-Oriented Design Quality Metrics][MetricsRobertMartin] we'll first count all kind of abstract types and than use the result to calculate *Abstractness*:
+Based on [Object-Oriented Design Quality Metrics][MetricsRobertMartin] we'll first count all kind of abstract types and than use the result to calculate *Abstractness* per category/package:
 
-$$ Abstractness = \frac{abstract\:classes\:in\:category}{total\:number\:of\:classes\:in\:category} $$
+$$ Abstractness = \frac{abstract\:classes}{all\:classes} $$
 
 Zero *Abstractness* means that there are no abstract types in the category (=package), one means that there are only abstract types.
 
@@ -811,6 +811,10 @@ It builds upon how to setup [jQAssistant][jqassistant] and [Neo4j] from [Part 1]
 <br>
 
 ---
+
+## Updates
+
+- 2023-05-23: [Reduce formula width for mobile devices and fix missing syntax highlighting](https://github.com/JohT/johtizen/pull/47)
 
 ## References
 
