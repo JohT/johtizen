@@ -19,6 +19,17 @@ used to analyze java jar dependencies e.g. for version updates.
 1. A markdown unordered list which will be replaced with the table of contents.
 {:toc}
 
+## Fast lane
+
+(Updated November 2023)
+
+If you'd like to start with ready-to-use reports and a fully automated analysis pipeline
+then have a look at [Code Graph Analysis Pipeline][code-graph-analysis-pipeline].
+
+The installation of the newest version of the tools is done automatically including plugins and configuration. A huge amount of preexisting queries and reports also run fully automated and provide already a lot of insights about the code base.
+
+If you on the other hand want to start small and learn step by step then continue reading.
+
 ## Getting started
 
 As described [here][jqassistant getting started], all you need to get started with [jQAssistant][jqassistant getting started] is:
@@ -221,11 +232,13 @@ Here are all steps using the manual data refinement in a nutshell:
 ## Updates
 
 - 2022-12-19: [Add jQAssistant command for simple data refinement to Java JAR Dependencies Blog](https://github.com/JohT/johtizen/pull/41)
+- 2023-11-19: [Reference Code Graph Analysis Pipeline](https://github.com/JohT/johtizen/pull/43)
 
 ## References
 
 - [About jQAssistant][jqassistant]
 - [Getting started with jQAssistant][jqassistant getting started]
+- [Code Graph Analysis Pipeline][code-graph-analysis-pipeline]
 - [Artifact Scanner of jQAssistant][jqassistant artifact scanner]
 - [About Neo4j][neo4j]
 - [Neo4j Cypher Manual][neo4j cypher manual]
@@ -253,3 +266,4 @@ Here are all steps using the manual data refinement in a nutshell:
 [concept classpath resolve]: https://jqassistant.github.io/jqassistant/doc/1.11.1/manual/#classpath:Resolve
 [concept dependency artifact]: https://jqassistant.github.io/jqassistant/doc/1.8.0/#dependency:Artifact
 [jqassistant rules]: https://jqassistant.github.io/jqassistant/doc/1.11.1/manual/#_rules_provided_by_the_jqassistant_java_plugin
+[code-graph-analysis-pipeline]: https://github.com/JohT/code-graph-analysis-pipeline

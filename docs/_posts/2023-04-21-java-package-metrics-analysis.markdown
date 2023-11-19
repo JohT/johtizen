@@ -19,6 +19,15 @@ and writes them into [Neo4j][neo4j], a native graph database. This blog shows ho
 1. A markdown unordered list which will be replaced with the table of contents.
 {:toc}
 
+## Fast lane
+
+(Updated November 2023)
+
+If you'd like to start with ready-to-use reports and a fully automated analysis pipeline
+then have a look at [Code Graph Analysis Pipeline][code-graph-analysis-pipeline] as already mentioned in [Part 1][BlogPart1].
+
+If you on the other hand want to dig deeper into this topic step by step then continue reading.
+
 ## Prerequisites
 
 Here is a short summary of the setup steps from [Part 1][BlogPart1]:
@@ -816,12 +825,14 @@ It builds upon how to setup [jQAssistant][jqassistant] and [Neo4j] from [Part 1]
 ## Updates
 
 - 2023-05-23: [Reduce formula width for mobile devices and fix missing syntax highlighting](https://github.com/JohT/johtizen/pull/47)
+- 2023-11-19: [Reference Code Graph Analysis Pipeline](https://github.com/JohT/johtizen/pull/43)
 
 ## References
 
 - [About jQAssistant][jqassistant]
 - [About Neo4j][neo4j]
 - [Analyze java dependencies with jQAssistant (Blog Part 1)][BlogPart1]
+- [Code Graph Analysis Pipeline][code-graph-analysis-pipeline]
 - [Calculate Metrics with jQAssistant][CalculateMetrics]
 - [Design Principles and Design Patterns by Robert C. Martin][DesignPrinciplesAndPatterns]
 - [Detecting cycles using Cypher (Neo4j Community)][DetectingCyclesUsingCypher]
@@ -842,3 +853,4 @@ It builds upon how to setup [jQAssistant][jqassistant] and [Neo4j] from [Part 1]
 [jqassistant getting started]: https://jqassistant.org/get-started
 [neo4j]: https://neo4j.com
 [neo4j cypher manual]: https://neo4j.com/docs/cypher-manual/current
+[code-graph-analysis-pipeline]: https://github.com/JohT/code-graph-analysis-pipeline
