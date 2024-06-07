@@ -120,6 +120,59 @@ The following example shows how to only commit changed files in the docs folder:
 <span style="font-size:1.8em;">&#9432;</span> 
 Note that the username in `username@users.noreply.github.com` needs to be replaced.
 
+### GIT conflict resolution
+
+(Added in June 2024)
+
+Since pipelines can run in parallel, it is possible that merge conflicts arise when new commits are pushed into the main branch. Normally, you would go through them manually and decide how to merge them. This can be automated when the merge strategy is known in advance.
+
+Considering that automated commits are usually used for generated reports, documentation and alike, it makes sense to pick the "latest and greatest" by prioritizing local changes and [overriding conflicting files in the main branch [25]][git-conflict-resolution]. This can be done by defining the conflict resolution strategy "theirs" as the following example shows:
+
+```yml
+- name: GIT commit and push docs overriding conflicts with local changes (verbose)
+  env: 
+    CI_COMMIT_MESSAGE: Continuous Integration Build Artifacts
+    CI_COMMIT_AUTHOR: Continuous Integration
+  run: |
+    git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+    git config --global user.email "username@users.noreply.github.com"
+    git add docs
+    git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
+    git fetch origin
+    git rebase --strategy-option=theirs origin/main
+    git push
+```
+
+<span style="font-size:1.8em;">&#9432;</span>
+Note that `git fetch origin` is needed before rebasing to be up-to-date with the remote repository.
+
+<span style="font-size:1.8em;">&#9888;</span>
+Note that `git add docs` is used here to only stage changes in the `docs` directory e.g. for automatic documentation generation. In practice it is highly advisable to only add the files you really want to commit and assure that no unintended changes are added, especially because every conflicting file in the main branch will be overwritten with the chosen strategy.
+
+<span style="font-size:1.8em;">&#9888;</span>
+Note that the strategy "theirs" will overwrite conflicting files in the main branch with the newly committed content regardless on how up-to-date the local branch is.
+
+Here is a variation of the example above with verbose output and status prints in between to get a better intuition of what is going on in detail and for troubleshooting:
+
+```yml
+- name: GIT commit and push docs overriding conflicts with local changes (verbose)
+  env: 
+    CI_COMMIT_MESSAGE: Continuous Integration Build Artifacts
+    CI_COMMIT_AUTHOR: Continuous Integration
+  run: |
+    git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+    git config --global user.email "username@users.noreply.github.com"
+    git add docs
+    git status
+    git commit --verbose -m "${{ env.CI_COMMIT_MESSAGE }}"
+    git status
+    git fetch origin
+    git rebase --strategy-option=theirs origin/main --verbose
+    git push --verbose
+```
+
+To keep the examples below easy on the eye, automatic conflict resolution will be left out.
+
 ## All-in-one solutions
 
 Already existing all-in-one solutions provide a good starting point for many use cases. 
@@ -530,6 +583,7 @@ For this some extra effort is needed as shown in [example 4](#example-4).
 
 - 2022-08-01: [Refine post to use git pull before auto commit](https://github.com/JohT/johtizen/pull/22)
 - 2022-09-18: [Undo git pull before auto commit and update actions](https://github.com/JohT/johtizen/pull/32)
+- 2024-06-06: [Resolving conflicts automatically](https://github.com/JohT/johtizen/pull/53)
 
 ## References
 - [[1] Continuous Integration][ContinuousIntegration]  
@@ -578,7 +632,7 @@ https://github.com/JohT/data-restructor-js
 https://github.community/t/how-to-push-to-protected-branches-in-a-github-action/16101/33
 - [[24] Managing a branch protection rule][BranchProtectionRule]
 https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule
-
+- [[25] Overriding conflicts with your own branch changes][git-conflict-resolution] https://demisx.github.io/git/rebase/2015/07/02/git-rebase-keep-my-branch-changes.html
 
 [ContinuousIntegration]: https://martinfowler.com/articles/continuousIntegration.html
 [GitHub]: https://github.com
@@ -606,3 +660,4 @@ https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-
 [HowToPushProtectedBranches]: https://github.community/t/how-to-push-to-protected-branches-in-a-github-action/16101/33
 [push-protected]: https://github.com/CasperWA/push-protected
 [BranchProtectionRule]: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule
+[git-conflict-resolution]: https://demisx.github.io/git/rebase/2015/07/02/git-rebase-keep-my-branch-changes.html
