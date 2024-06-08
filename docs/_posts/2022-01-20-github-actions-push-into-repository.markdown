@@ -173,6 +173,14 @@ Here is a variation of the example above with verbose output and status prints i
 
 To keep the examples below easy on the eye, automatic conflict resolution will be left out.
 
+### GitHub commit user email address
+
+(Added in June 2024)
+
+If you want to use your GitHub user email address for git commits, have a look at this GitHub documentation page: [Setting your commit email address [26]][github-commit-email-address]
+
+If you want to see the commits as if they came from the GitHub bot including its special annotation, then have a look at this checkout action pull request: [README: Suggest user.email to be 41898282+github-actions[bot]@users.noreply.github.com [27]][github-bot-user-email]
+
 ## All-in-one solutions
 
 Already existing all-in-one solutions provide a good starting point for many use cases. 
@@ -584,6 +592,7 @@ For this some extra effort is needed as shown in [example 4](#example-4).
 - 2022-08-01: [Refine post to use git pull before auto commit](https://github.com/JohT/johtizen/pull/22)
 - 2022-09-18: [Undo git pull before auto commit and update actions](https://github.com/JohT/johtizen/pull/32)
 - 2024-06-06: [Resolving conflicts automatically](https://github.com/JohT/johtizen/pull/53)
+- 2024-06-08: [Add section about GitHub commit user.email addresses](https://github.com/JohT/johtizen/pull/54)
 
 ## References
 - [[1] Continuous Integration][ContinuousIntegration]  
@@ -633,6 +642,8 @@ https://github.community/t/how-to-push-to-protected-branches-in-a-github-action/
 - [[24] Managing a branch protection rule][BranchProtectionRule]
 https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule
 - [[25] Overriding conflicts with your own branch changes][git-conflict-resolution] https://demisx.github.io/git/rebase/2015/07/02/git-rebase-keep-my-branch-changes.html
+- [[26] GitHub: Setting your commit email address][github-commit-email-address] https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/setting-your-commit-email-address
+- [[27] GitHub bot user email][github-bot-user-email] https://github.com/actions/checkout/pull/1184
 
 [ContinuousIntegration]: https://martinfowler.com/articles/continuousIntegration.html
 [GitHub]: https://github.com
@@ -661,3 +672,5 @@ https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-
 [push-protected]: https://github.com/CasperWA/push-protected
 [BranchProtectionRule]: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule
 [git-conflict-resolution]: https://demisx.github.io/git/rebase/2015/07/02/git-rebase-keep-my-branch-changes.html
+[github-commit-email-address]: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/setting-your-commit-email-address
+[github-bot-user-email]: https://github.com/actions/checkout/pull/1184
